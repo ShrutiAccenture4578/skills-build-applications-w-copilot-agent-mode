@@ -24,6 +24,11 @@ from .views import (
     LeaderboardViewSet, WorkoutViewSet
 )
 
+# Use environment variable for codespace name
+CODESPACE_NAME = os.environ.get('CODESPACE_NAME', 'localhost')
+
+api_base_url = f"https://{CODESPACE_NAME}-8000.app.github.dev/api/"
+
 # Create router and register viewsets
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
@@ -51,11 +56,7 @@ def api_root(request):
     }, status=200)
 
 # Configure base URL based on environment
-codespace_name = os.environ.get('CODESPACE_NAME')
-if codespace_name:
-    base_url = f"https://{codespace_name}-8000.app.github.dev"
-else:
-    base_url = "http://localhost:8000"
+base_url = api_base_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
