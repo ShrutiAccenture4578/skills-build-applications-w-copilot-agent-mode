@@ -1,5 +1,6 @@
 ---
-mode: 'agent'
+agent: agent
+tools: [execute, read, edit, search, web, agent, todo]
 model: GPT-4.1
 description: 'Setup, configure, and populate the octofit_db database with test data for the Octofit Tracker Django app.'
 ---
